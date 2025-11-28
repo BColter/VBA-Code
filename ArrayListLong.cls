@@ -61,21 +61,6 @@ Public Sub Clear()
     index = 0
 End Sub
 
-'Returns the size of the array
-Public Property Get size() As Long
-    size = index
-End Property
-
-'Returns the last index of the array
-Public Property Get GetIndex() As Long
-    GetIndex = index - 1
-End Property
-
-' Get or set the capacity of the underlying array (read-write)
-Public Property Get Capacity() As Long
-    Capacity = UBound(DATA) + 1 ' UBound is 0-based, capacity is 1-based
-End Property
-
 'Return a trimmed array with no empty slots
 Public Function ToArray() As Long()
     Dim trimmed() As Long
@@ -183,10 +168,27 @@ Public Property Get dataArray() As Long()
     dataArray = DATA
 End Property
 
+'Returns the size of the array
+Public Property Get size() As Long
+    size = index
+End Property
+
+'Returns the last index of the array
+Public Property Get GetIndex() As Long
+    GetIndex = index - 1
+End Property
+
+' Get the capacity of the underlying array
+Public Property Get Capacity() As Long
+    Capacity = UBound(DATA) + 1 ' UBound is 0-based, capacity is 1-based
+End Property
+
+
 'Allows user to set the capacity of the array if known
 Public Property Let Capacity(newCapacity As Long)
     If newCapacity < index Then Err.Raise 500, , "Capacity cannot be less than current size"
     If newCapacity < 1 Then Err.Raise 500, , "Capacity must be at least 1"
     ReDim Preserve DATA(newCapacity - 1) ' Adjust to 0-based index
 End Property
+
 

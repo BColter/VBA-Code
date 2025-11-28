@@ -94,7 +94,7 @@ Public Function IndexOf(x As Long, Optional startPos As Long = 0) As Long
     Next
 End Function
 
-' Sort the data ascending
+' Sort the data, ascending by default
 Public Sub Sort(Optional ByVal descending As Boolean = False)
     If index < 2 Then Exit Sub
     QuickSort 0, index - 1
@@ -190,5 +190,6 @@ Public Property Let Capacity(newCapacity As Long)
     If newCapacity < 1 Then Err.Raise 500, , "Capacity must be at least 1"
     ReDim Preserve DATA(newCapacity - 1) ' Adjust to 0-based index
 End Property
+
 
 
